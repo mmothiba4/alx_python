@@ -1,8 +1,8 @@
-#!/usr/bin/bash/python3
+#!/usr/bin/python3
 numbers = range(99)
 for number in range(99):
-    print("{:x}".format(number), end="\n ")
-    
+    print("{:0x}".format(number), end="\n")
+
     
 
 
