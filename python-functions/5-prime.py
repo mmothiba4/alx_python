@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 def is_prime(number):
-    for i in range(2,number):
+    for i in range(2, int(number/2)):
         if (number%i) == 0:
-            return True
-        return False
+            return False
+        return True
     
