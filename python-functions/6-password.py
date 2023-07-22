@@ -6,7 +6,7 @@ def validate_password(password):
         special = False
         for char in password:
             if(char.isdigit()):
-                number = True
+                num = True
             if(char.islower()):
                 lowercase = True
             if(char.isupper()):
