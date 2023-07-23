@@ -3,7 +3,7 @@ def validate_password(password):
         lowercase = False
         uppercase = False
         num = False
-        space = False
+        space = True
         for char in password:
             if(char.isdigit()):
                 num = True
@@ -12,7 +12,7 @@ def validate_password(password):
             if(char.isupper()):
                 uppercase = True
             if(not char.isalnum()):
-                space = True
+                space = False
         return lowercase and uppercase and num and space
     else:
         return False
