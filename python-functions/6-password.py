@@ -1,19 +1,19 @@
 def validate_password(password):
     if(len(password) > 8):
-        lowerCase = False
-        upperCase = False
+        lowercase = False
+        uppercase = False
         num = False
-        special = False
+        space = False
         for char in password:
             if(char.isdigit()):
                 num = True
             if(char.islower()):
-                lowerCase = True
+                lowercase = True
             if(char.isupper()):
-                upperCase = True
+                uppercase = True
             if(not char.isalnum()):
-                special = True
-        return lowerCase and upperCase and num and special
+                space = True
+        return lowercase and uppercase and num and space
     else:
         return False
 
