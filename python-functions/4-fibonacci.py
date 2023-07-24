@@ -6,7 +6,7 @@ def fibonacci_sequence(n):
         return [0]
     if n == 2:
         return result
-    for i in xrange(2, n):
+    for i in range(2, n):
         result.append(result[i-1] + result[i-2])
         return result
 
