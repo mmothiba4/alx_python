@@ -5,9 +5,10 @@ def fibonacci_sequence(n):
     elif n == 1:
         return 0
     elif n == 2:
-        return 1
-    for i in range(3, n+1):
-        fibonacci_sequence.append(fibonacci_sequence[i-1] + fibonacci_sequence[i-2])
+        return result
+    for i in range(2, n):
+        result.append(result[i-1] + result[i-2])
+    return result
     
         
         
