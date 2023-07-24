@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 def fibonacci_sequence(n):
-    fibo_list = []
-    a,b = 0,1
-    while b < n:
-        a,b = b, a+b
-        fibo_list.append(a)
-    print(fibo_list)
+    if n <= 0:
+        return []
+    if n == 1:
+        return [0]
+    if n == 2:
+        return result
+    for i in xrange(2, n):
+        result.append(result[i-1] + result[i-2])
+        return result
 
 
 
