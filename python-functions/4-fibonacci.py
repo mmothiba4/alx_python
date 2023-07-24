@@ -10,7 +10,7 @@ def fibonacci_sequence(n):
         a = 0
         b = 1
         result = 0
-        for i in range(2, n):
+        for i in range(3, n+1):
         result = a + b
         a = b
         b = result
