@@ -7,8 +7,8 @@ def fibonacci_sequence(n):
     if n == 2:
         return [n]
     for i in range(2, n):
-        fibonacci_sequence.append(fibonacci_sequence[i-1] + fibonacci_sequence[i-2])
-        return fibonacci_sequence
+        return (fibonacci_sequence[i-1] + fibonacci_sequence[i-2])
+        
 
 
 
