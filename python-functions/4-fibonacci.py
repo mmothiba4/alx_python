@@ -6,10 +6,10 @@ def fibonacci_sequence(n):
         return [0]
     elif n == 2:
         return 1
-    else:
-        list = fibonacci_sequence(n-1)
-        list.append(list[-1] + list[-2])
-        return list
+    fibonacci_sequence = [0, 1]
+    for i in range(2, n):
+        fibonacci_sequence.append(fibonacci_sequence[i-1] + fibonacci_sequence[i-2])
+        return []
     
     
         
