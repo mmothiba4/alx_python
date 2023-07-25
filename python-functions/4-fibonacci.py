@@ -4,7 +4,8 @@ def fibonacci_sequence(n):
         return []
     elif n == 1:
         return [0]
-    elif n = 
+    elif n == 2:
+        return 1
     else:
         list = fibonacci_sequence(n-1)
         list.append(list[-1] + list[-2])
