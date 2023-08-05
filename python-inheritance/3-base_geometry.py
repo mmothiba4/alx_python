@@ -16,7 +16,7 @@ class BaseGeometry(type):
         return new_attribute_list
     
 
-class BaseGeometry(metaclass=BaseGeometryMeta):
+class BaseGeometry(BaseGeometry=BaseGeometryMeta):
     """
     Description of the class
     """
