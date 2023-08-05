@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""Defines an empty class BaseGeometry."""
+"""
+Defines an empty class BaseGeometry.
+"""
 
 
 class BaseGeometry:
-    """Represent base geometry."""
+    """An empty class"""
     pass
 
 #define object
-obj = BaseGeometry()
-print(obj)
-#set an attribute of the object for the empty class
-obj.title = 'Empty Class'
-print(obj.title)
+bg = BaseGeometry()
+print(bg)
