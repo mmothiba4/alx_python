@@ -4,7 +4,7 @@ Define an empty class BaseGeometry
 """
 
 
-class BaseGeometry:
+class BaseGeometryMeta(type):
     """
     Empty class
     """
@@ -17,7 +17,7 @@ class BaseGeometry:
         return new_attribute_list
     
 
-class BaseGeometry(BaseGeometry=BaseGeometryMeta):
+class BaseGeometry(Metaclass=BaseGeometryMeta):
     """
     Description of the class
     """
