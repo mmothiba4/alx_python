@@ -6,7 +6,7 @@ Define an empty class BaseGeometry
 
 class BaseGeometry:
     """
-    Base geometry's meta class
+    Empty class
     """
     pass
 
