@@ -1,24 +1,35 @@
 #!/usr/bin/python3
 """
-Defines an empty class BaseGeometry
+Description of the module
 """
 
 
 class BaseGeometryMeta(type):
-    """Base geometry's meta class"""
-    def __dir__(self):
-        attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
-        return new_attribute_list
+    """
+    Base geometry's meta class
+    """
 
-class BaseGeometry(metaclass= BaseGeometryMeta):
-    """Description of the class"""
+
     def __dir__(self):
         attributes = super().__dir__()
         new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
         return new_attribute_list
     
-    bg = BaseGeometry()
-    print(dir(bg))
+
+class BaseGeometry(metaclass=BaseGeometryMeta):
+    """
+    Description of the class
+    """
+
+    def __dir__(self):
+        attributes = super().__dir__()
+        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
+        return new_attribute_list
+    
+    a = BaseGeometry()
+
+    print(dir(a))
+
     print()
+    
     print(dir(BaseGeometry))
