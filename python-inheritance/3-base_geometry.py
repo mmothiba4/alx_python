@@ -19,6 +19,8 @@ class BaseGeometryMeta(type):
         attributes = super().__dir__()
         new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
         return new_attribute_list
+    """empty class"""
+    pass
     
 
 class BaseGeometry(metaclass=BaseGeometryMeta):
