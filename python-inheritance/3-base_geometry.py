@@ -9,28 +9,13 @@ class BaseGeometryMeta(type):
     Empty class
     """
     pass
-
-
-    def __dir__(self):
-        attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
-        return new_attribute_list
     
-
-class BaseGeometry(Metaclass=BaseGeometryMeta):
-    """
-    Description of the class
-    """
-
-    def __dir__(self):
-        attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
-        return new_attribute_list
+"""Description of the object"""
     
-    a = BaseGeometry()
+bg = BaseGeometry()
 
-    print(dir(a))
+print(dir(bg))
 
-    print()
+print()
 
-    print(dir(BaseGeometry))
+print(dir(BaseGeometry))
