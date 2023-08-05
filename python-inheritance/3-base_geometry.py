@@ -4,7 +4,7 @@ Define an empty class BaseGeometry
 """
 
 
-class BaseGeometryMeta(type):
+class BaseGeometry:
     """
     Empty class
     """
