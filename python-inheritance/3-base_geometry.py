@@ -22,4 +22,5 @@ class BaseGeometryMeta(type):
     
 
 class BaseGeometry(metaclass=BaseGeometryMeta):
+    """empty class"""
     pass
