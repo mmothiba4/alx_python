@@ -39,6 +39,8 @@ class BaseGeometry(metaclass=BaseGeometryMeta):
 
 class Rectangle(BaseGeometry):
     """Rectangle class"""
+    pass
+
     def __init__(self, width, height):
         """Initilize rectangle method"""
         self.__width = super().integer_validator("width", width)
