@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""Square class Module
+"""BaseGeometry class Module
 """
 
 
 class BaseGeometry():
     """BaseGeometry class"""
 
-class BaseGeometryMeta(type): 
+class BaseGeometryMeta(type):
     """BaseGeometry's meta class
     """
 
 
     def __dir__(self):
         attributes = super().__dir__()
-        new_attribute_list = [x for x in attributes if x != "__init_subclass__"]
+        new_attribute_list = [for item != "__init_subclass__"]
         return new_attribute_list
     
     """empty class"""
@@ -24,7 +24,7 @@ class BaseGeometry(metaclass=BaseGeometryMeta):
     """BaseGeometry metaclass"""
     def __dir__(self):
         attributes = super().__dir__()
-        new_attribute_list = [x for x in attributes if x != "__init_subclass__"]
+        new_attribute_list = [for item != "__init_subclass__"]
         return new_attribute_list
     """empty class"""
     pass
