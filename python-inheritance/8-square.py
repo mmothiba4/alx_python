@@ -7,12 +7,15 @@ class BaseGeometry():
     """BaseGeometry class"""
 
 class BaseGeometryMeta(type): 
-   
-    """BaseGeometry's meta class"""
+    """BaseGeometry's meta class
+    """
+
+
     def __dir__(self):
         attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
+        new_attribute_list = [x for x in attributes if x != "__init_subclass__"]
         return new_attribute_list
+    
     """empty class"""
     pass
 
@@ -21,7 +24,7 @@ class BaseGeometry(metaclass=BaseGeometryMeta):
     """BaseGeometry metaclass"""
     def __dir__(self):
         attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
+        new_attribute_list = [x for x in attributes if x != "__init_subclass__"]
         return new_attribute_list
     """empty class"""
     pass
@@ -70,3 +73,4 @@ class Square(Rectangle):
     def __str__(self):
         """Method that returns a string"""
         return "[Square] {}/{}".format(self.__size, self.__size)
+    
