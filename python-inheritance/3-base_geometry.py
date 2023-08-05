@@ -4,10 +4,11 @@ Description of the module
 """
 
 
-class BaseGeometry(type):
+class BaseGeometry:
     """
     Base geometry's meta class
     """
+    pass
 
 
     def __dir__(self):
