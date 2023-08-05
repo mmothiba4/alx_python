@@ -34,9 +34,9 @@ class BaseGeometry(metaclass=BaseGeometryMeta):
     
 """Description of the object"""
     
-a = BaseGeometry()
+bg = BaseGeometry()
 
-print(dir(a))
+print(dir(bg))
 
 print()
 
