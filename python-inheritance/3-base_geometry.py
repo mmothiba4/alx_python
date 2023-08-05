@@ -4,7 +4,7 @@ Description of the module
 """
 
 
-class BaseGeometryMeta(type):
+class BaseGeometry(type):
     """
     Base geometry's meta class
     """
@@ -31,5 +31,5 @@ class BaseGeometry(metaclass=BaseGeometryMeta):
     print(dir(a))
 
     print()
-    
+
     print(dir(BaseGeometry))
