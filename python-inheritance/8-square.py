@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""Square class Module"""
-#!/usr/bin/python3
-"""BaseGeometry class Module"""
+"""Square class Module
+"""
 
 
 class BaseGeometry():
     """BaseGeometry class"""
 
-class BaseGeometryMeta(type):
-     
+class BaseGeometryMeta(type): 
+   
     """BaseGeometry's meta class"""
     def __dir__(self):
         attributes = super().__dir__()
@@ -16,7 +15,7 @@ class BaseGeometryMeta(type):
         return new_attribute_list
     """empty class"""
     pass
-    
+
 
 class BaseGeometry(metaclass=BaseGeometryMeta):
     """BaseGeometry metaclass"""
@@ -46,7 +45,6 @@ class Rectangle(BaseGeometry):
         """Initilize rectangle method"""
         self.__width = super().integer_validator("width", width)
         self.__height = super().integer_validator("height", height)
-
 
     def area(self):
         """Method that returns area of rectangle"""
