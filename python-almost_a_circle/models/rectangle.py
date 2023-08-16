@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """Defines a base model class."""
 
+class Rectangle(Base):
+    pass
+
+
 class Base:
     """Represent the base model.
 
@@ -23,6 +27,8 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+"""Class rectangle inherits from class base"""
 
 class Rectangle(Base):
     """Represent a rectangle."""
