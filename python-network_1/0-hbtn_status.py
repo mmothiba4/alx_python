@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """This script fetches data from
-    https://alx-intranet.hbtn.io/status
+    https://alu-intranet.hbtn.io/status
 """
 
 
 import urllib.request
 
-with urllib.request.urlopen("https://alx-intranet.hbtn.io/status") as response:
+with urllib.request.urlopen("https://alu-intranet.hbtn.io/status") as response:
     body = response.read()
     print("Body response:")
     print("\t- type: {}".format(type(body)))
