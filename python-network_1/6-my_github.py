@@ -12,7 +12,7 @@ def my_github():
     values = (argv[1], argv[2])
     req = requests.get(url, auth=values)
     if req.status_code >= 400:
-        print("None")
+        print(Error code)
     else:
         print(req.json().get('id'))
 
