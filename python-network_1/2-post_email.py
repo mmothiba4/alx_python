@@ -4,7 +4,8 @@
     response
 """
 import requests
-from sys import argv
+import sys
+
 
 
 def post_emailr():
