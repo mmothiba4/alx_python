@@ -9,9 +9,12 @@ import sys
 import urllib.request
 
 
-if __name__ == "__main__":
-    url = sys.argv[1]
+def request_id():
+    """ displays the value of the X-Request-Id variable """
+    with urllib.request.urlopen(argv[1]) as response:
+        the_page = response.info()
+    print(the_page['X-Request-Id'])
 
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as resp:
-        print(dict(resp.headers).get("X-Request-Id"))
+
+if __name__ == "__main__":
+    request_id()
