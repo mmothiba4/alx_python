@@ -8,13 +8,17 @@ import sys
 
 
 
-def post_emailr():
+def post_email():
     """sends a POST request to the passed URL with the email as a parameter"""
     url = argv[1]
     values = {'email': argv[2]}
-    r = requests.post(url, data=values)
-    print(r.text)
+    data = urllib.parse.urlencode(values)
+    data = data.encode('utf-8')  # data should be bytes
+    req = urllib.request.Request(url, data)
+    with urllib.request.urlopen(req) as response:
+        the_page = response.read().decode('utf-8')
+    print(the_page)
 
 
 if __name__ == "__main__":
-    post_emailr()
+    post_email()
