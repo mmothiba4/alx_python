@@ -1,22 +1,19 @@
-"""import sys and requests
-    sends a request to the URL
-    check if the status code is above 400 or not."""
-
-
-import sys
+#!/usr/bin/python3
+"""  script that takes in a URL, sends a request to the URL and
+    displays the body of the response (decoded in utf-8)
+"""
 import requests
+from sys import argv
 
-def main():
-    url = sys.argv[1]
-    r = requests.get(url)
+def error_rcode():
+    """ sends a request to the URL and displays the body of the response """
+    response = requests.get(argv[1])
+    status = response.status_code
+    if status >= 400:
+        print('Error code: {}'.format(status))
+    else:
+        print(response.text)
 
-    r1 = r.status_code
 
-    if r1 >= 400:
-        print("Error code: {}".format(r1))
-    elif r1 < 400:
-        print("Regular request")
-
-    if __name__ == "__main__":
-        main()
-        
+if __name__ == "__main__":
+    error_rcode()
