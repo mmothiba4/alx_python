@@ -4,8 +4,7 @@
 """
 
 import sys
-import urllib.parse
-import urllib.request
+import requests
 
 
 if __name__ == "__main__":
