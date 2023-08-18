@@ -6,14 +6,12 @@
 
 import requests
 
-def fetch():
+def fetch_r():
     """ fetches https://alu-intranet.hbtn.io/status """
-    req = 'https://alx-intranet.hbtn.io/status'
-    with urllib.request.urlopen(req) as response:
-        the_page = response.read()
-    s = "Body response:\n\t- type: {}\n\t- content: {}\n\t- utf8 content: {}"
-    print(s.format(type(the_page), the_page, the_page.decode('utf-8')))
+    req = requests.get('https://alu-intranet.hbtn.io/status')
+    s = "Body response:\n\t- type: {}\n\t- content: {}"
+    print(s.format(type(req.text), req.text))
 
 
 if __name__ == "__main__":
-    fetch()
+    fetch_r()
