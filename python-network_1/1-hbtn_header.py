@@ -6,7 +6,7 @@ variable found in the header ofthe response.
 """
 
 import sys
-import urllib.request
+import request
 
 
 def request_id():
