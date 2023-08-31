@@ -21,10 +21,10 @@ def c_is_fun(text="is fun"):
     return f"C" + text.replace('_', ' ')
 
 @app.route("/python/<text>")
-def python_is_cool(text="is cool"):
+def python_is_cool(text="is_cool"):
     """Templates used to generate any type of text file.
     """
-    return f"Python is cool " + text.replace('_', ' ')
+    return f"Python " + text.replace('_', ' ')
 
 
 if __name__ == "__main__":
