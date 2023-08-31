@@ -17,7 +17,7 @@ def hbnb():
 
 """A function that returns a specified string when returning the text in that directory."""
 @app.route("/c/<text>")
-def c_is_fun(text="cool"):
+def c_is_fun(text="is super fun"):
     return f"C" + text.replace('_', ' ')
 
 
