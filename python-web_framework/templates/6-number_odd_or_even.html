@@ -4,7 +4,11 @@
     <TITLE>HBNB</TITLE>
 </HEAD>
 <BODY>
-    <H1>Number: {{ n }} {{ is even }} {{or odd }}</H1>
+{%if number_odd_or_even %}
+    <H1>Number: {{ n }} {{ is even }}!</H1>
+{% else %}
+    <H1>Number: odd!</H1>
+{%endif %}
 </BODY>
 </HTML>
 
