@@ -30,7 +30,7 @@ def python_is_cool(text="is cool"):
 def is_a_num(n):
     return f"{n} is a number"
 
-@app.rout("/number_template/<int:n>", strict_slashes= False)
+@app.route("/number_template/<int:n>", strict_slashes= False)
 def number_template(n):
     return render_template("templates/5-number.html, n=n")
 
