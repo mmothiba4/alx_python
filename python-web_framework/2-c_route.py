@@ -9,5 +9,17 @@ app = Flask (__name__)
 def hello_HBNB():
     return "Hello HBNB!"
 
+"""A script that returns a specifeid string hbnb"""
+
+@app.route("/hbnb")
+def hbnb():
+    return "HBNB"
+
+"""A function that returns a specified string when returning the text in that directory."""
+@app.route("/c/<text>")
+def c is fun():
+    return f"C {escape(text)}"
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port="5000")
