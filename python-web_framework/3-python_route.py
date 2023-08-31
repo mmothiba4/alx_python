@@ -24,7 +24,7 @@ def c_is_fun(text="is fun"):
 def python_is_cool(text ="is cool"):
     """Templates used to generate any type of text file.
     """
-    return f"Python " + text.replace('_', ' ')
+    return f"Python " + text.replace ('_', ' ')
 
 
 if __name__ == "__main__":
