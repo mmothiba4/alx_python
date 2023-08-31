@@ -16,7 +16,7 @@ def hbnb():
     return "HBNB"
 
 """A function that returns a specified string when returning the text in that directory."""
-@app.route("/c/is super fun")
+@app.route("/c/is_super_fun")
 def c_is_fun():
     return f"C {escape(is super fun)}"
 
