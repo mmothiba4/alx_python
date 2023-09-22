@@ -2,7 +2,7 @@
 """Start link class to table in database
 """
 import sys
-from 6-model_state import Base, State
+from model_state import Base, State
 
 from sqlalchemy import (create_engine)
 
