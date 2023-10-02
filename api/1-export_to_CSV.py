@@ -15,4 +15,4 @@ with open(f, mode='w') as f:
     writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, lineterminator='\n')
     for task in todos.json():
         if task.get('USER_ID') == int(USER_ID):
-            writer.writerow([USER_ID, name, str(task.get('TASK_COMPLETED_STATUS')),task.get('TASK_TITLE')])
+            writer.writerow([USER_ID, name, str(task.get('TASK_COMPLETED')),task.get('TASK_TITLE')])
