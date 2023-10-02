@@ -2,17 +2,22 @@
 """Exports to-do list information for a given employee ID to CSV format."""
 from csv import DictWriter, QUOTE_ALL
 from requests import get
-from sys import argv
 
 if __name__ == "__main__":
-    USER_ID = sys.argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/1".format(USER_ID))
-    USERNAME = user.json.get("USERNAME")
-    todos = requests.get("https://jsonplaceholder.typicode.com/users/1/todos")
+    main_url = "https://jsonplaceholder.typicode.com"
+    todo_url = main_url + "/user/{}/todos".format(argv[1])
+    name_url = main_url + "/users/{}".format(argv[1])
+    todo_result = get(todo_url).json()
+    name_result = get(name_url).json()
 
-filename = USER_ID.csv
-with open(f, mode='w') as f:
-    writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, lineterminator='\n')
-    for task in todos.json():
-        if task.get('USER_ID') == int(USER_ID):
-            writer.writerow([USER_ID, name, str(task.get('TASK_COMPLETED')),task.get('TASK_TITLE')])
+    todo_list = []
+    for todo in todo_result:
+        todo_dict = {}
+        todo_dict.update({"user_ID": argv[1], "username": name_result.get(
+            "username"), "completed": todo.get("completed"),
+                          "task": todo.get("title")})
+        todo_list.append(todo_dict)
+    with open("{}.csv".format(argv[1]), 'w', newline='') as f:
+        header = ["user_ID", "username", "completed", "task"]
+        writer = DictWriter(f, fieldnames=header, quoting=QUOTE_ALL)
+        writer.writerows(todo_list)
