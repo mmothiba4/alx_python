@@ -16,9 +16,9 @@ if __name__ == "__main__":
     todo_list = []
     for todo in todo_result:
         todo_dict = {}
-        todo_dict.update({"task": todo.get("title"), "completed": todo.get(
-            "completed"), "username": name_result.get("username")})
+        todo_dict.update({ "USER_ID": [{"task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, {
+            "task": "TASK_TITLE", "completed": TASK_COMPLETED_STATUS, "username": "USERNAME"}, ... ]})
         todo_list.append(todo_dict)
 
-    with open("{}.json".format(argv[1]), 'w') as f:
+    with open("USER_ID.json".format(argv[1]), 'w') as f:
         dump({argv[1]: todo_list}, f)
