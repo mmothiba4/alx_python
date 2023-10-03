@@ -2,7 +2,8 @@
 A simple Flask web application to display "Hello HBNB!", custom messages, Python messages, and number checking.
 """
 
-from flask import Flask,render_template
+from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
