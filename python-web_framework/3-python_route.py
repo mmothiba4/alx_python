@@ -1,31 +1,51 @@
-"""A script that starts a Flask web application:
-listening on 0.0.0.0, port 5000"""
+"""
+A simple Flask web application to display "Hello HBNB!", custom messages, and Python messages.
+"""
 
 from flask import Flask
 
-app = Flask (__name__)
+app = Flask(__name__)
 
-@app.route("/")
-def hello_HBNB():
+@app.route("/", strict_slashes=False)
+def home():
+    """
+    The view function for the home page ("/") of the web application.
+
+    Returns:
+        str: The greeting message "Hello HBNB!".
+    """
     return "Hello HBNB!"
 
-"""A script that returns a specifeid string hbnb"""
-
-@app.route("/hbnb")
-def hbnb():
-    return "HBNB"
-
-"""A function that returns a specified string when returning the text in that directory."""
-@app.route("/c/<text>")
-def c_is_fun(text="is fun"):
-    return f"C " + text.replace ('_', ' ')
-
-@app.route("/python/<text>")
-def python_is_cool(text="is cool"):
-    """return of a text replacing _ with ' '
+@app.route("/c/<text>", strict_slashes=False)
+def display_c_text(text):
     """
-    return f"Python " + text.replace ('_', ' ')
+    Display "C" followed by the value of the text variable.
 
+    Args:
+        text (str): The text variable from the URL.
+
+    Returns:
+        str: The message "C " followed by the value of text.
+    """
+    # Replace underscores with spaces
+    formatted_text = text.replace("_", " ")
+    return f"C {formatted_text}"
+
+@app.route("/python/", defaults={"text": "is cool"})
+@app.route("/python/<text>", strict_slashes=False)
+def display_python_text(text):
+    """
+    Display "Python" followed by the value of the text variable.
+
+    Args:
+        text (str): The text variable from the URL.
+
+    Returns:
+        str: The message "Python " followed by the value of text.
+    """
+    # Replace underscores with spaces
+    formatted_text = text.replace("_", " ")
+    return f"Python {formatted_text}"
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port="5000")
+    app.run(host='0.0.0.0', port='5000', debug=True)
