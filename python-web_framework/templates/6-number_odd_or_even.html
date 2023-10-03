@@ -4,12 +4,11 @@
     <TITLE>HBNB</TITLE>
 </HEAD>
 <BODY>
-    {% if number is defined %}
         <H1>Number: {{ number }}</H1>
         {% if number % 2 == 0 %}
-            <p>This number is even.</p>
-        {% else %}
             <p>This number is odd.</p>
+        {% else %}
+            <p>This number is even.</p>
         {% endif %}
     {% else %}
         <p>Invalid input: Not a number</p>
