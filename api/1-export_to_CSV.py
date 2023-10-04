@@ -34,7 +34,7 @@ def get_employee_data(employee_id):
 
         # Create and write the data to a CSV file
         csv_file_name = f"{user_id}.csv"
-        with open(csv_file_name, mode='w', newline='') as csv_file:
+        with open(csv_file_name, 'r', newline='') as csv_file:
             fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
