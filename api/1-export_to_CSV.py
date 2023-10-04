@@ -3,10 +3,11 @@ Uses https://jsonplaceholder.typicode.com along with an employee ID to
 return information about the employee's todo list progress and counts tasks in the CSV.
 """
 
+import csv
 import re
 import requests
 import sys
-import csv
+
 
 API_URL = 'https://jsonplaceholder.typicode.com'
 
