@@ -5,7 +5,7 @@ import csv
 import requests
 import sys
 
-def get_employee_data(employee_id):
+def user_info(employee_id):
     # Define the API URLs for employee details and their TODO list
     employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     todo_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
