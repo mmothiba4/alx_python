@@ -1,65 +1,35 @@
-#!/usr/bin/python3
+"""
+Uses https://jsonplaceholder.typicode.com along with an employee ID to
+return information about the employee's todo list progress and counts tasks in the CSV.
+"""
 
-#A script to export data in the CSV format
-import csv
+import re
 import requests
 import sys
+import csv
 
-def user_info(employee_id):
-    # Define the API URLs for employee details and their TODO list
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todo_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+API_URL = 'https://jsonplaceholder.typicode.com'
 
-    # Make API requests to fetch employee details and TODO list
-    employee_response = requests.get(employee_url)
-    todo_response = requests.get(todo_url)
+def user_info(id):
+    user_res = requests.get('{}/users/{}'.format(API_URL, id)).json()
+    todos_res = requests.get('{}/todos'.format(API_URL)).json()
+    user_name = user_res.get('username')
+    todos = list(filter(lambda x: x.get('userId') == id, todos_res))
 
-    # Check if both requests were successful
-    if employee_response.status_code == 200 and todo_response.status_code == 200:
-        employee_data = employee_response.json()
-        todo_data = todo_response.json()
+    csv_filename = '{}.csv'.format(id)
 
-        # Ensure User ID and Username are 25 characters long
-        user_id = f"{employee_id:025}"
-        username = f"{employee_data['username'][:25]:<25}"
+    try:
+        with open(csv_filename, 'r') as f:
+            csv_data = list(csv.reader(f))
+            num_tasks = len(csv_data) - 1  # Subtract 1 to exclude the header row
+            print(f'Number of tasks in CSV: {num_tasks} OK')
+    except FileNotFoundError:
+        print(f'CSV file {csv_filename} not found.')
 
-        # Calculate the number of completed tasks
-        completed_tasks = [task for task in todo_data if task["completed"]]
-        num_completed_tasks = len(completed_tasks)
-        total_num_tasks = len(todo_data)
-
-        # Display the employee TODO list progress
-        print(f"User ID and Username: {user_id} - {username}")
-        print(f"Employee {employee_data['name']} is done with tasks({num_completed_tasks}/{total_num_tasks}):")
-
-        # Create and write the data to a CSV file
-        csv_file_name = f"{user_id}.csv"
-        with open(csv_file_name, 'r', newline='') as csv_file:
-            fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-            # Write the CSV header
-            writer.writeheader()
-
-            # Write each task as a row in the CSV file
-            for task in todo_data:
-                writer.writerow({
-                    "USER_ID": user_id,
-                    "USERNAME": username,
-                    "TASK_COMPLETED_STATUS": task["completed"],
-                    "TASK_TITLE": task["title"]
-                })
-
-        print(f"Data exported to {csv_file_name}")
-
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            user_info(id)
     else:
-        print(f"Failed to retrieve data for employee ID {employee_id}")
-
-if __name__ == "__main__":
-    # Check if an employee ID was provided as a command-line argument
-    if len(sys.argv) != 2:
-        print("Usage: python3 script.py <employee_id>")
-        sys.exit(1)
-
-    employee_id = int(sys.argv[1])
-    get_employee_data(employee_id)
+        print("Please provide a valid user ID as a command-line argument.")
