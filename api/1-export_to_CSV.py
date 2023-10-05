@@ -1,36 +1,49 @@
+#!/usr/bin/python3
 """
-Uses https://jsonplaceholder.typicode.com along with an employee ID to
-return information about the employee's todo list progress and counts tasks in the CSV.
+This script uses an API to convert to CSV.
+
 """
 
 import csv
-import re
 import requests
 import sys
 
 
-API_URL = 'https://jsonplaceholder.typicode.com'
+if __name__ == "__main__":
+    
+# Pass employee id on command line
+    id = sys.argv[1]
 
-def user_info(id):
-    user_res = requests.get('{}/users/{}'.format(API_URL, id)).json()
-    todos_res = requests.get('{}/todos'.format(API_URL)).json()
-    user_name = user_res.get('username')
-    todos = list(filter(lambda x: x.get('userId') == id, todos_res))
+    userTodoURL = "https://jsonplaceholder.typicode.com/users/{}/todos".format(id)
+    userProfile = "https://jsonplaceholder.typicode.com/users/{}".format(id)
 
-    csv_filename = '{}.csv'.format(id)
+# Make requests on APIs
+    todoResponse = requests.get(userTodoURL)
+    profileResponse = requests.get(userProfile)
 
-    try:
-        with open(csv_filename, 'r') as f:
-            csv_data = list(csv.reader(f))
-            num_tasks = len(csv_data) - 1  # Subtract 1 to exclude the header row
-            print(f'Number of tasks in CSV: {num_tasks} OK')
-    except FileNotFoundError:
-        print(f'CSV file {csv_filename} not found.')
+# Parse responses 
+    todoJson_Data = todoResponse.json()
+    profileJson_Data = profileResponse.json()
 
-if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        if re.fullmatch(r'\d+', sys.argv[1]):
-            id = int(sys.argv[1])
-            user_info(id)
-    else:
-        print("Please provide a valid user ID as a command-line argument.")
+#Get employee information
+    employeeName = profileJson_Data['username']
+
+    dataList = []
+
+    for data in todoJson_Data:
+        dataDict = {"userId":data['userId'], "name":employeeName, "completed":data['completed'], "title":data['title']}
+        dataList.append(dataDict)
+
+    # CSV file path
+    csv_file_path = '{}.csv'.format(todoJson_Data[0]['userId'])
+
+    # Define the field names (column headers)
+    fieldnames = ["userId", "name", "completed", "title"]
+
+    # Open the CSV file in write mode
+    with open(csv_file_path, 'w', newline='') as csv_file:
+        # Create a CSV writer
+        csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+
+        for row in dataList:
+            csv_writer.writerow(row)
