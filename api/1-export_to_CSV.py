@@ -1,49 +1,37 @@
 #!/usr/bin/python3
 """
-This script uses an API to convert to CSV.
-
+Check student .CSV output of user information
 """
 
 import csv
 import requests
 import sys
 
+users_url = "https://jsonplaceholder.typicode.com/users?id="
+todos_url = "https://jsonplaceholder.typicode.com/todos"
+
+
+def user_info(id):
+    """ Check CSV formatting """
+
+    response = requests.get(todos_url).json()
+    with open(str(id) + ".csv", 'r') as f:
+        output = f.read().strip()
+        count = 0
+        flag = 0
+        for i in response:
+            if i['userId'] == id:
+                url = users_url + str(i['userId'])
+                usr_resp = requests.get(url).json()
+                line = '"' + str(i['userId']) + '","' + usr_resp[0]['username'] + '","' + str(i['completed']) + '","' + i['title'] + '"'
+                count += 1
+                if not line in output:
+                    print("Task {} Formatting: Incorrect".format(count))
+                    flag = 1
+
+    if flag == 0:
+        print("Formatting: OK")
+
 
 if __name__ == "__main__":
-    
-# Pass employee id on command line
-    id = sys.argv[1]
-
-    userTodoURL = "https://jsonplaceholder.typicode.com/users/{}/todos".format(id)
-    userProfile = "https://jsonplaceholder.typicode.com/users/{}".format(id)
-
-# Make requests on APIs
-    todoResponse = requests.get(userTodoURL)
-    profileResponse = requests.get(userProfile)
-
-# Parse responses 
-    todoJson_Data = todoResponse.json()
-    profileJson_Data = profileResponse.json()
-
-#Get employee information
-    employeeName = profileJson_Data['username']
-
-    dataList = []
-
-    for data in todoJson_Data:
-        dataDict = {"userId":data['userId'], "name":employeeName, "completed":data['completed'], "title":data['title']}
-        dataList.append(dataDict)
-
-    # CSV file path
-    csv_file_path = '{}.csv'.format(todoJson_Data[0]['userId'])
-
-    # Define the field names (column headers)
-    fieldnames = ["userId", "name", "completed", "title"]
-
-    # Open the CSV file in write mode
-    with open(csv_file_path, 'w', newline='') as csv_file:
-        # Create a CSV writer
-        csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
-
-        for row in dataList:
-            csv_writer.writerow(row)
+    user_info(int(sys.argv[1]))
